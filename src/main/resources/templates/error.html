@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+    <h1>Error</h1>
+    
+    <!-- Displaying error messages -->
+    <div th:if="${errorMessage}">
+        <p th:text="${errorMessage}">An error occurred</p>
+    </div>
+    
+    <!-- Displaying specific error details -->
+    <div th:if="${errorDetails}">
+        <p th:text="${errorDetails}">Error details</p>
+    </div>
+    
+    <!-- Back to Home Page link -->
+    <a th:href="@{/Announcement}">Back to Home Page</a>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<div th:fragment="header">
+<style th:inline="text">
+
+    /* Changes made by Haziq, original code before change for header part : position=static, z-index=1000 */
+    header { 
+        width: 100%;
+        height: 80px;
+        top: 0;
+        left: 0;
+        position: absolute;
+        background: #ffa500;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 50px;
+        z-index: 1000;
+    }
+
+    .Logo {
+        max-height: 100%;
+        margin-left: 1px;
+    }
+
+    .center-content {
+        flex: 1; /* Take up remaining space between logo and nav */
+        display: flex;
+        justify-content: center;
+        align-items: center; /* Center vertically */
+        text-align: center;
+        position: static;
+    }
+
+    .center-content h1 {
+        font-size: 24px;
+        margin: 0; /* Ensure there's no extra margin */
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav ol {
+        display: flex;
+        list-style: none;
+        padding-left: 0;
+        margin-top: 0;
+    }
+
+    .nav ol li a {
+        text-decoration: none;
+        color: #272727;
+        padding: 0 20px;
+        transition: all .4s;
+        position: relative;
+        z-index: 1;
+    }
+
+    .nav ol li a:hover {
+        color: #ff7c00;
+    }
+
+    .nav ol li a::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: #ff7c00;
+        transition: width .4s;
+    }
+
+    .nav ol li a:hover::before {
+        width: 100%;
+    }
+
+    .center-content .bismillah {
+        font-size: 30px;
+        margin: 0; /* Ensure there's no extra margin */
+    }
+    
+    .profile-image {
+        width: 50px; /* Adjust the width of the profile image */
+        height: 50px; /* Adjust the height of the profile image */
+        border-radius: 50%; /* Ensure it's a circular shape */
+    }
+
+</style>
+
+<!-- header.html -->
+
+    <header>
+        <img src="../Images/qubah.png" alt="Logo" class="Logo"> 
+        <div class="center-content">
+            <h1 class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>
+        </div>
+        <div class="nav">
+            <ol>
+                <li><a th:href="@{/AdminViewAccount}"><img src="../Images/profilepic.png" alt="Profile Image" class="profile-image"></a></li>
+                <!-- Add more menu items here -->
+            </ol>
+        </div>
+    </header>
+</div>
+

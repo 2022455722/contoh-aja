@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Payment</title>
+</head>
+<body>
+    <h2>New Payment</h2>
+    
+    <!-- Form to submit payment details -->
+    <form action="#" th:action="@{/newPayment}" th:object="${payment}" method="post">
+        <label for="paymentTitle">Payment Title:</label><br>
+        <input type="text" id="paymentTitle" name="paymentTitle" th:field="*{paymentTitle}" required><br><br>
+        
+        <label for="amount">Amount:</label><br>
+        <input type="number" id="amount" name="amount" step="0.01" th:field="*{amount}" required><br><br>
+        
+        <label for="accountId">Account ID:</label><br>
+        <select id="accountId" name="accountId" th:field="*{accountID}">
+            <option th:each="accountId : ${accountIds}" th:value="${accountId}" th:text="${accountId}"></option>
+        </select><br><br>
+        
+        <button type="submit">Submit Payment</button>
+    </form>
+    
+    <!-- Display error message if any -->
+    <div th:if="${error}" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
+</body>
+</html>

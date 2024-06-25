@@ -1,0 +1,40 @@
+<div th:fragment="footer">
+    <style th:inline="text">
+        /* Changes made by Haziq, original code added elements for footer part : z-index=100, position: relative  */
+        footer {
+            background-color: #ffa500;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            z-index: 100;
+            position: relative;
+            margin-top: auto; /* Ensures footer stays at the bottom */
+        }
+
+        .footer-links {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;    
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+
+    <!-- footer.html -->
+
+    <footer>
+        <div class="footer-content">
+            <p>Address: Jalan Merlimau / Jasin, 77300 Merlimau, Melaka</p>
+            <p>Contact Number: 019-627 1115</p>
+            <div class="footer-links">
+                <a href="https://www.facebook.com/asysyujaah02/?locale=ms_MY" target="_blank">Facebook</a>
+                <a href="https://www.instagram.com/masjidasyujaahmerlimauutara/" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </footer>
+</div>

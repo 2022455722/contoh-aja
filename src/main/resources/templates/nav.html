@@ -1,0 +1,67 @@
+<!-- nav.html -->
+<div th:fragment="sidebar">
+    <style>
+        /* Navbar styles */
+        .sidebar {
+            width: 17%;
+            padding: 15vh 0;
+            height: 140vh;
+            background: #0a5275;
+            transition: all .5s ease;
+            z-index: 9;
+            text-align: left;
+            position: static; 
+            top: 80px;
+        }
+
+        .sidebar header {
+            font-size: 30px;
+            color: white;
+            line-height: 70px;
+            text-align: left;
+            background: #008080;
+            user-select: none;
+        }
+
+        .sidebar ul a {
+            text-decoration: none;
+            display: block;
+            height: 100%;
+            width: 100%;
+            line-height: 50px;
+            font-size: 15px;
+            color: white;
+            padding-left: 15px;
+            box-sizing: border-box;
+            border-bottom: 1px solid black;
+            border-top: 1px solid rgba(255, 255, 255, .1);
+            transition: .4s;
+        }
+
+        .sidebar p {
+            padding-bottom: 30px;
+            text-align: center;
+        }
+
+        .sidebar ul a:hover {
+            background-color: #6fcaea;
+        }
+    </style>
+
+    <div class="sidebar">
+        <p>Asy'Syuja-ah E-Coop</p>
+        <ul>
+            <li><a th:href="@{/view-account-list}">View Account List</a></li>
+            <li><a th:href="@{/view-account}">View Account</a></li>
+            <li><a th:href="@{/edit-account}">Edit Account</a></li>
+            <li><a th:href="@{/view-announcement}">View Announcement</a></li>
+            <li><a th:href="@{/view-report}">View Report</a></li>
+            <li><a th:href="@{/view-payment-status}">View Payment Status</a></li>
+            <li><a th:href="@{/make-payment}">Make Payment</a></li>
+            <li><a th:href="@{/create-announcement}">Create Announcement</a></li>
+            <li><a th:href="@{/view-business-list}">View Business List</a></li>
+            <li><a th:href="@{/register-business}">Register Business</a></li>
+            <li><a th:href="@{/edit-business}">Edit Business</a></li>
+        </ul>
+    </div>
+</div>

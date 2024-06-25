@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Business Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container mt-5">
+        <h2>Edit Business Details</h2>
+        <form th:action="@{/saveBusinessDetails}" th:object="${business}" method="post">
+            <input type="hidden" th:field="*{businessID}"/>
+            
+            <div class="form-group">
+                <label for="ownerName">Owner Name:</label>
+                <input type="text" class="form-control" id="ownerName" th:field="*{ownerName}" required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="ownerPhone">Owner Phone:</label>
+                <input type="text" class="form-control" id="ownerPhone" th:field="*{ownerPhone}" required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="ownerNRIC">Owner NRIC:</label>
+                <input type="text" class="form-control" id="ownerNRIC" th:field="*{ownerNRIC}" required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="ownerEmail">Owner Email:</label>
+                <input type="email" class="form-control" id="ownerEmail" th:field="*{ownerEmail}" required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="businessType">Business Type:</label>
+                <input type="text" class="form-control" id="businessType" th:field="*{businessType}" required/>
+            </div>
+            
+            <button type="submit" class="btn btn-success">Save Changes</button>
+            <a href="/viewBusinesses" class="btn btn-primary">Back to Businesses</a>
+        </form>
+    </div>
+    <div th:replace="~{fragments/footer :: footer}" style="margin-top: auto;"></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

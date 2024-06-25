@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Account</title>
+    <link rel="stylesheet" href="View account.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #FFECE8;
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1 {
+            font-weight: 500;
+            font-size: 40px;
+            word-break: break-all;
+            color: #fff;
+            text-shadow: 2px 2px 4px #c5d064;
+            position: absolute;
+            top: 1%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h2 {
+            font-weight: 450;
+            font-size: 40px;
+            word-break: break-all;
+            color: #fff;
+            text-shadow: 2px 2px 4px #008080;
+            position: absolute;
+            top: 12%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .navigation {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav ol {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav ol li a {
+            text-decoration: none;
+            color: rgb(39, 39, 39);
+            transition: all .4s;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* View Account field */
+
+        /* General styling for the form container */
+        .form-container {
+            background-color: #f7e7ce;
+            width: 800px; /* Adjust width as needed */
+            padding: 20px;
+            border-radius: 8px;
+            margin: auto; /* Center horizontally */
+            margin-top: 10%;
+            margin-bottom: 10%;
+            position: static; /* Position relative to allow z-index to work */
+            z-index: 1; /* Ensure it's above the background but below the popups */
+            margin-left: 400px; /* Adjust this value to position it properly */
+        }
+
+        /* Styling for the form itself */
+        form {
+            display: grid;
+            grid-template-columns: repeat(2, 2fr);
+            grid-template-rows: auto;
+            gap: 10px;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        /* Styling for labels */
+        .form-label {
+            text-align: left;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Styling for input fields */
+        .form-input {
+            position: relative;
+            width: calc(100% - 16px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
+        }
+
+        /* Confirmation Delete Account Pop up */
+
+        /* Popup Display*/
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 4%;
+            justify-content: center;
+            position: relative;
+            left: 25%; /* Adjust this value as needed */
+        }
+
+        .close-btn,
+        .delete-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .popup-no-btn,
+        .popup-yes-btn,
+        .popup-close-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 15%;
+            gap: 15%;
+        }
+
+        .delete-btn {
+            background-color: #ff0000;
+        }
+
+        .popup-no-btn {
+            background-color: #ff0000;
+        }
+
+        /* Second Popup */
+        #success-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(to bottom, #a9f1df 0%, #ffbbbb 100%);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            color: white;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        /* Overlay styles */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            z-index: 999; /* Ensure the overlay appears behind the popup */
+            display: none; /* Initially hidden */
+        }
+
+        /* Popup styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(to bottom, #a9f1df 0%, #ffbbbb 100%);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            color: white;
+            text-align: center;
+            max-width: 400px;
+        }
+    </style>
+
+    <script>
+        // Function to show the popup
+        function showPopup() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        // Function to hide the popup
+        function hidePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('success-popup').style.display = 'none';
+        }
+
+        // Function to show the success popup
+        function showSuccessPopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('success-popup').style.display = 'block';
+        }
+
+        // Add event listeners after DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Event listener for the "No" button in the popup
+            document.querySelector('.popup-no-btn').addEventListener('click', hidePopup);
+
+            // Event listener for the "Close" button in the success popup
+            document.querySelector('.popup-close-btn').addEventListener('click', hidePopup);
+
+            // Event listener for the "Back to Homepage" button
+            document.querySelector('.close-btn').addEventListener('click', function () {
+                window.location.href = '/'; // Adjust path as needed
+            });
+
+            // Event listener for the "Delete Account" button
+            document.querySelector('.delete-btn').addEventListener('click', showPopup);
+        });
+    </script>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+<main>
+    <!-- Sidebar for Admin-->
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+    <div class="hero">
+        <!-- End of Side Navbar -->
+        <h2>View Account</h2>
+        <div class="form-container">
+            <!-- Populate input fields with session attributes -->
+            <dl>
+                <dt>Account ID:</dt>
+                <dd th:text="${account.accountid}"></dd>
+
+                <dt>NRIC:</dt>
+                <dd th:text="${account.nric}"></dd>
+
+                <dt>Name:</dt>
+                <dd th:text="${account.name}"></dd>
+
+                <dt>Email:</dt>
+                <dd th:text="${account.email}"></dd>
+
+                <dt>Role:</dt>
+                <dd th:text="${account.role}"></dd>
+
+                <dt>Address:</dt>
+                <dd th:text="${account.address}"></dd>
+
+                <dt>Gender:</dt>
+                <dd th:text="${account.gender}"></dd>
+
+                <dt>User Type:</dt>
+                <dd th:text="${account.userType}"></dd>
+
+                <dt>Status:</dt>
+                <dd th:text="${account.status}"></dd>
+
+                <dt>Phone:</dt>
+                <dd th:text="${account.phone}"></dd>
+            </dl>
+
+            <div class="button-container">
+                <button class="close-btn" onclick="window.location.href='/'">Back to Homepage</button>
+                <button class="delete-btn" onclick="showPopup()">Delete Account</button>
+            </div>
+            <div id="overlay"></div>
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <p>Proceed With Deletion?</p>
+                    <div class="popup-buttons">
+                        <button class="popup-no-btn" onclick="hidePopup()">No</button>
+                        <button class="popup-yes-btn" onclick="showSuccessPopup()">Yes</button>
+                    </div>
+                </div>
+            </div>
+            <div id="success-popup" class="popup">
+                <div class="popup-content">
+                    <p>Successfully Deleted</p>
+                    <button class="popup-close-btn" onclick="hidePopup()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</footer>
+</body>
+
+</html>

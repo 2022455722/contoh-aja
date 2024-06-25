@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Registration</title>
+    <style>
+        /* Basic styling for form layout */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], select {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <h2>Business Registration Form</h2>
+    <form action="/createBusiness" method="post">
+        <div class="form-group">
+            <label for="ownerName">Owner Name:</label>
+            <input type="text" id="ownerName" name="ownerName" required>
+        </div>
+        <div class="form-group">
+            <label for="ownerPhone">Owner Phone:</label>
+            <input type="tel" id="ownerPhone" name="ownerPhone" pattern="[0-9]{11}" placeholder="Format: 01245678909" required>
+        </div>
+        <div class="form-group">
+            <label for="ownerNRIC">Owner NRIC:</label>
+            <input type="text" id="ownerNRIC" name="ownerNRIC" pattern="[0-9]{12}" placeholder="Format: 996754261004" required>
+        </div>
+        <div class="form-group">
+            <label for="ownerEmail">Owner Email:</label>
+            <input type="email" id="ownerEmail" name="ownerEmail" required>
+        </div>
+        <div class="form-group">
+            <label for="businessType">Business Type:</label>
+            <select id="businessType" name="businessType" required>
+                <option value="">Select Business Type</option>
+                <option value="Store">Store</option>
+                <option value="Stall">Stall</option>
+                <option value="Vending">Vending</option>
+            </select>
+        </div>
+        <div class="submit-group">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+    <div th:replace="~{fragments/footer :: footer}" style="margin-top: auto;"></div>
+</body>
+</html>

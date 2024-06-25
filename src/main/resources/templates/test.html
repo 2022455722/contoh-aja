@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            background-color: #f4f4f9;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #00254A;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            transition: width 0.3s;
+        }
+
+        .sidebar:hover {
+            width: 300px;
+        }
+
+        .logo {
+            width: 100%;
+            text-align: center;
+            padding-bottom: 2vh;
+            margin-bottom: 2vh;
+        }
+
+        .logo img {
+            width: 80%;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .menu li {
+            border-top: 1px solid #fff;
+        }
+
+        .menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 15px 20px;
+            transition: background 0.3s;
+        }
+
+        .menu li a:hover {
+            background-color: #004080;
+        }
+
+        .content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .background img {
+            width: auto;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+        }
+
+        .container {
+            flex-grow: 1;
+            padding: 2vh 2vw;
+            overflow-y: auto;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 2vw;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .account-details {
+            font-size: 1.2rem;
+        }
+
+        .account-details dt {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <a href="/StaffHomePage">
+                <img src="/image/logo.png" alt="Flyboard Melaka">
+            </a>
+        </div>
+        <ul class="menu">
+            <li><a href="#"><i class="fas fa-user"></i> Account</a></li>
+            <li><a href="viewActivitielist.html" th:href="@{/viewActivitielist}"><i class="fas fa-clipboard-list"></i> Activity</a></li>
+            <li><a href="#"><i class="fas fa-book"></i> Booking</a></li>
+            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="background">
+            <img src="/image/bgIndexStaff.png" alt="Flyboard Melaka">
+        </div>
+        <div class="container">
+            <div class="form-container">
+                <h1>Staff Profile</h1>
+                <dl class="account-details">
+                    <dt>Staff ID:</dt>
+                    <dd th:text="${staff.staffID}"></dd>
+                    <dt>Name:</dt>
+                    <dd th:text="${staff.name}"></dd>
+                    <dt>Email:</dt>
+                    <dd th:text="${staff.email}"></dd>
+                    <dt>Phone:</dt>
+                    <dd th:text="${staff.phone}"></dd>
+                    <dt>Date of Birth:</dt>
+                    <dd th:text="${staff.dob}"></dd>
+                    <dt>Address:</dt>
+                    <dd th:text="${staff.address}"></dd>
+                    <dt>Manager ID:</dt>
+                    <dd th:text="${staff.managerID}"></dd>
+                </dl>
+                <div class="actions">
+                    <a href="/editProfile" class="button">Edit Profile</a>
+                    <form action="/deleteProfile" method="post" style="display:inline;">
+                        <button type="submit" class="button">Delete Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

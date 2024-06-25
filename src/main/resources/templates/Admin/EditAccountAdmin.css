@@ -1,0 +1,387 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    width: 100%;
+    height: 80px;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: #ffa500;
+    color: #fff;
+    text-align: center;
+    padding: 0px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99 ;
+}
+
+.Logo{
+  max-height: 100%; 
+  margin-left: 1px; 
+}
+
+/* Body */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFECE8;
+    color: #fff;
+    text-align: center;
+    height: fit-content;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+h1 {
+    font-weight: 500;
+    font-size: 40px;
+    word-break: break-all;
+    color: #fff;
+    text-shadow: 2px 2px 4px #c5d064;
+    position: absolute;
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+h2 {
+  font-weight: 450;
+  font-size: 40px;
+  word-break: break-all;
+  color: #fff;
+  text-shadow: 2px 2px 4px #008080;
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+}
+
+.nav ol {
+    display: flex;
+    list-style: none;
+}
+
+.nav ol li a {
+    text-decoration: none;
+    color: rgb(39, 39, 39);
+    transition: all .4s;
+    position: relative;
+    z-index: 1;
+}
+
+/*  Navbar */
+.sidebar {
+    width: 17%;
+    padding: 15vh 0;
+    height: 140vh;
+    background: #0a5275;
+    transition: all .5s ease;
+    z-index: 9;
+    text-align: left;
+}
+
+.sidebar header {
+    font-size: 30px;
+    color: white;
+    line-height: 70px;
+    text-align: left;
+    background: #008080;
+    user-select: none;
+}
+
+.sidebar ul a {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 50px;
+    font-size: 15px; /* change font */
+    color: white;
+    padding-left: 15px;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    transition: .4s;
+}
+
+.sidebar p{
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.sidebar ul a:hover{
+  background-color: #6fcaea;
+}
+
+/* Content Starts Here */
+/* Form Container */
+.form-container {
+  background-color: #f7e7ce;
+  width: 35%;
+  padding: 20px;
+  border-radius: 8px;
+  margin: auto;
+  margin-top: 13%;
+  margin-left: 17%; 
+}
+
+/* Form Styling */
+form {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  gap: 5px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Label Styling */
+.form-label {
+  text-align: left;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: bold;
+  grid-column: span 2; 
+}
+
+/* Input Field Styling */
+.form-input {
+  width: 450px; 
+  height: 40px; 
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  box-sizing: border-box; 
+}
+
+/* Container for input and edit button */
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  grid-column: span 2; 
+}
+
+/* Edit Button Styling */
+.editButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.popup-submit-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 40px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px; /* Increase the margin-top to move the button further down */
+}
+
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+
+/* Optional: Adjust styles for small screens */
+@media screen and (max-width: 600px) {
+  .form-container {
+      width: 100%;
+      padding: 10px;
+  }
+  
+  form {
+      grid-template-columns: 1fr;
+  }
+  
+  .form-label, .form-input, .form-submit {
+      grid-column: span 1;
+  }
+  
+  .editButton {
+      margin-left: 5px;
+  }
+}
+
+/* Overlay styles */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 999; 
+  display: none; 
+}
+
+/* Popup styles */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(to bottom, #A9F1DF 0%, #FFBBBB 100%); 
+  padding: 60px; 
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  color: white; 
+  text-align: center; 
+  max-width: 400px; 
+}
+
+/* Footer Section */
+footer {
+  background-color: #ffc65d;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-links {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;    
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: fit-content;
+}
+
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+  /* Header */
+  header {
+      height: auto;
+      padding: 10px 20px;
+  }
+
+  .Logo {
+      max-height: 50px; /* Adjust logo size */
+  }
+
+  h1 {
+      font-size: 24px; /* Adjust font size */
+      top: 10%;
+  }
+
+  h2 {
+      font-size: 24px; /* Adjust font size */
+      top: 20%;
+  }
+
+  .navigation {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .nav ol {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 20px;
+  }
+
+  .nav ol li {
+      margin-bottom: 10px;
+  }
+
+  /* Sidebar */
+  .sidebar {
+      width: 100%;
+      padding: 15vh 0;
+      height: auto;
+  }
+
+  .sidebar header {
+      font-size: 24px; /* Adjust font size */
+      line-height: 40px; /* Adjust line height */
+      text-align: center;
+  }
+
+  .sidebar ul a {
+      padding: 10px;
+      font-size: 14px; /* Adjust font size */
+  }
+
+  /* Form Container */
+  .form-container {
+      width: 90%;
+      margin: auto;
+      margin-top: 13%;
+      margin-left: 0;
+      padding: 10px;
+  }
+
+  /* Form Styling */
+  form {
+      grid-template-columns: 1fr;
+  }
+
+  .form-label, .form-input, .popup-submit-btn {
+      grid-column: span 1;
+  }
+
+  .input-wrapper {
+      grid-column: span 1;
+  }
+
+  .editButton {
+      margin-left: 5px;
+  }
+
+  /* Footer */
+  footer {
+      padding: 15px;
+  }
+
+  .footer-links {
+      flex-direction: column;
+  }
+
+  .footer-links a {
+      margin: 5px 0;
+  }
+}
+
+/* Tablet Landscape */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  /* Adjustments for tablet landscape */
+  .form-container {
+      width: 70%;
+      margin-left: 17%;
+  }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Account Detail</title>
+</head>
+<body>
+    <h2>Account Details</h2>
+    <table border="1">
+        <tr>
+            <th>Account ID</th>
+            <td th:text="${session.account.accountid}"></td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td th:text="${session.account.name}"></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td th:text="${session.account.email}"></td>
+        </tr>
+        <tr>
+            <th>Role</th>
+            <td th:text="${session.account.role}"></td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td th:text="${session.account.phone}"></td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td th:text="${session.account.address}"></td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            <td th:text="${session.account.gender}"></td>
+        </tr>
+        <tr>
+            <th>User Type</th>
+            <td th:text="${session.account.userType}"></td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td th:text="${session.account.status}"></td>
+        </tr>
+    </table>
+</body>
+</html>

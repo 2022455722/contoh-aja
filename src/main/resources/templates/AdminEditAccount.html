@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Account Details</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: "Poppins", Arial, sans-serif;
+        }
+
+        main {
+            flex: 1;
+            margin-left: 280px; /* Adjust to match the sidebar width */
+            padding: 20px;
+        }
+
+        .account-details {
+            max-width: 800px;
+            margin: 80px auto 0; /* Adjust the top margin to clear the header */
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .account-details .detail-box {
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px; /* Space between each box */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .account-details .detail-box p {
+            margin: 0; /* Remove margin to keep text inside the box aligned properly */
+        }
+
+        .account-details .detail-box strong {
+            display: inline-block;
+            width: 150px; /* Adjust width as necessary */
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .account-details form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .account-details form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .account-details form label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .account-details form input,
+        .account-details form select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .account-details form button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .account-details form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <script th:inline="javascript">
+        function deleteAccount() {
+            if (confirm('Are you sure you want to delete this account?')) {
+                document.getElementById('deleteForm').submit();
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+
+    <main>
+        <div class="account-details">
+            <h2>Edit Account Details</h2>
+            <form th:action="@{/saveSelectedAccount}" method="post">
+                <div class="form-group">
+                    <label for="accountid">Account ID</label>
+                    <input type="hidden" id="accountid" th:value="${account.accountid}" th:field="*{account.accountid}" readonly />
+                </div>
+                <div class="form-group">
+                    <label for="nric">NRIC</label>
+                    <input type="text" id="nric" th:value="${account.nric}" th:field="*{account.nric}" />
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" th:value="${account.name}" th:field="*{account.name}" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" th:value="${account.email}" th:field="*{account.email}" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" th:value="${account.password}" th:field="*{account.password}" />
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <input type="text" id="role" th:value="${account.role}" th:field="*{account.role}" />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="text" id="phone" th:value="${account.phone}" th:field="*{account.phone}" />
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" th:value="${account.address}" th:field="*{account.address}" />
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" th:value="${account.gender}" th:field="*{account.gender}">
+                        <option value="Male" th:selected="${account.gender == 'Male'}">Male</option>
+                        <option value="Female" th:selected="${account.gender == 'Female'}">Female</option>
+                        <option value="Other" th:selected="${account.gender == 'Other'}">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="userType">User Type</label>
+                    <input type="text" id="userType" th:value="${account.userType}" th:field="*{account.userType}" />
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <input type="text" id="status" th:value="${account.status}" th:field="*{account.status}" />
+                </div>
+                <div class="form-group">
+                    <button type="submit">Save Changes</button>
+                </div>
+                <div class="form-group">
+                    <!-- Ensure onclick calls deleteAccount() function -->
+                    <button type="button" onclick="deleteAccount()">Delete Account</button>
+                </div>
+            </form>
+
+            <!-- Form for account deletion -->
+            <form id="deleteForm" th:action="@{/deleteAccount}" method="post">
+                <input type="hidden" id="accountid" th:value="${account.accountid}" th:field="*{account.accountid}" />
+            </form>
+        </div>
+    </main>
+
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

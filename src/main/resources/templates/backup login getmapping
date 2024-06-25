@@ -1,0 +1,43 @@
+
+@PostMapping("/login")
+    public String login(@RequestParam String email, @RequestParam String password, Model model, HttpServletRequest request) {
+        // SQL query to check if email exists
+        String checkEmailSQL = "SELECT email, role, password FROM public.account WHERE email = ? AND password = ?";
+
+        try (Connection connection = dataSource.getConnection();
+                PreparedStatement checkEmailStmt = connection.prepareStatement(checkEmailSQL)) {
+
+            // Set the email and password parameters
+            checkEmailStmt.setString(1, email);
+            checkEmailStmt.setString(2, password);
+
+            try (ResultSet resultSet = checkEmailStmt.executeQuery()) {
+                if (resultSet.next()) {
+                    // Email exists and password matches, save user details in session
+                    HttpSession session = request.getSession();
+                    session.setAttribute("email", resultSet.getString("email")); // Store email in session
+                    session.setAttribute("role", resultSet.getString("role"));
+
+                    // Redirect to dashboard page based on role
+                    String role = resultSet.getString("role");
+                    if ("admin".equals(role)) {
+                        return "redirect:/Announcement"; // Replace with your actual admin dashboard page
+                    } else {
+                        return "redirect:/Announcement"; // Replace with your actual member dashboard page
+                    }
+                } else {
+                    // Email or password does not match
+                    model.addAttribute("error", "Incorrect email or password.");
+                    return "index"; // Redirect to index page
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "SQL Error while logging in: {0}", e.getMessage());
+            model.addAttribute("error", "An error occurred while logging in.");
+            return "index"; // Redirect to index page
+        } catch (DataAccessException e) {
+            LOGGER.log(Level.SEVERE, "Data access error while logging in: {0}", e.getMessage());
+            model.addAttribute("error", "A database access error occurred while logging in.");
+            return "index"; // Redirect to index page
+        }
+    }

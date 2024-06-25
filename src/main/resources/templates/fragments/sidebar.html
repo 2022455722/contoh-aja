@@ -1,0 +1,133 @@
+<div th:fragment="sidebar">
+  <style th:inline="text">
+    .sidebar {
+      background-color: var(--white-color);
+      width: 260px;
+      position: absolute; /* Change to fixed to keep it in place */
+      top: 0;
+      left: 0;
+      height: 100vh; /* Adjust height to fit the viewport */
+      padding: 80px 20px;
+      z-index: 100;
+      /* overflow-y: auto;  */
+      box-shadow: 0 0 1px var(--grey-color-light);
+      transition: all 0.5s ease;
+      background-color: #ffa500;
+    }
+
+    .sidebar .menu_content {
+      position: relative;
+    }
+
+    .sidebar .menu_title {
+      margin: 15px 0;
+      padding: 0 20px;
+      font-size: 18px;
+    }
+
+    .sidebar .menu_dashboard::before {
+      content: "Asy'Syuja-ah E-Coop";
+    }
+
+    .sidebar .menu_items {
+      padding: 0;
+      list-style: none;
+    }
+
+    .sidebar .nav_link {
+      display: block;
+      padding: 10px 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--grey-color);
+      white-space: nowrap;
+    }
+
+    .sidebar .nav_link:hover {
+      color: var(--white-color);
+      background: var(--blue-color);
+    }
+
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        width: 80px;
+        padding: 60px 0;
+      }
+
+      .sidebar .menu_title {
+        padding: 6px 30px;
+      }
+
+      .sidebar .nav_link {
+        display: block;
+        padding: 10px 15px;
+      }
+    }
+  </style>
+
+  <!-- sidebar.html -->
+
+  <div class="sidebar">
+    <div class="menu_content">
+      <ul class="menu_items">
+        <div class="menu_title menu_dashboard">Asy'Syuja-ah E-Coop</div>
+        <!-- Navigation items -->
+        <li class="item">
+          <a th:href="@{/view-account-list}" class="nav_link">
+            <span class="navlink">View Account List</span>
+          </a>
+        </li>
+        <li class="item">
+          <a th:href="@{/view-account}" class="nav_link">
+            <span class="navlink">View Account</span>
+          </a>
+        </li>
+        <li class="item">
+          <a th:href="@{/edit-account}" class="nav_link">
+            <span class="navlink">Edit Account</span>
+          </a>
+        </li>
+        <li class="item">
+          <a th:href="@{/view-announcement}" class="nav_link">
+            <span class="navlink">View Announcement</span>
+          </a>
+        </li>
+        <li class="item">
+          <a th:href="@{/view-report}" class="nav_link">
+            <span class="navlink">View Report</span>
+          </a>
+        </li>
+        <li class="item">
+          <a th:href="@{/view-payment-status}" class="nav_link">
+            <span class="navlink">View Payment Status</span>
+          </a>
+        </li>
+        <li class="item">
+          <a th:href="@{/make-payment}" class="nav_link">
+            <span class="navlink">Make Payment</span>
+          </a>
+        </li>
+        <li class="item">
+          <a th:href="@{/create-announcement}" class="nav_link">
+            <span class="navlink">Create Announcement</span>
+          </a>
+        </li>
+        <li class="item">
+          <a th:href="@{/view-business-list}" class="nav_link">
+            <span class="navlink">View Business List</span>
+          </a>
+        </li>
+        <li class="item">
+          <a th:href="@{/register-business}" class="nav_link">
+            <span class="navlink">Register Business</span>
+          </a>
+        </li>
+        <li class="item">
+          <a th:href="@{/edit-business}" class="nav_link">
+            <span class="navlink">Edit Business</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

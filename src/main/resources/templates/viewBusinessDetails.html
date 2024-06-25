@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container mt-5">
+        <h1 class="mb-4">Business Details</h1>
+
+        <!-- Display error message if exists -->
+        <div th:if="${error}" class="alert alert-danger" role="alert">
+            <span th:text="${error}"></span>
+        </div>
+
+        <!-- Display business details -->
+        <div th:if="${business}">
+            <dl class="row">
+                <dt class="col-sm-3">Business ID:</dt>
+                <dd class="col-sm-9" th:text="${business.businessID}"></dd>
+
+                <dt class="col-sm-3">Owner Name:</dt>
+                <dd class="col-sm-9" th:text="${business.ownerName}"></dd>
+
+                <dt class="col-sm-3">Owner Phone:</dt>
+                <dd class="col-sm-9" th:text="${business.ownerPhone}"></dd>
+
+                <dt class="col-sm-3">Owner NRIC:</dt>
+                <dd class="col-sm-9" th:text="${business.ownerNRIC}"></dd>
+
+                <dt class="col-sm-3">Owner Email:</dt>
+                <dd class="col-sm-9" th:text="${business.ownerEmail}"></dd>
+
+                <dt class="col-sm-3">Business Type:</dt>
+                <dd class="col-sm-9" th:text="${business.businessType}"></dd>
+            </dl>
+        </div>     
+        <!-- Link to go back to view all businesses -->
+        <a href="/viewBusinesses" class="btn btn-primary">Back to Businesses</a>
+    </div>
+    <div th:replace="~{fragments/footer :: footer}" style="margin-top: auto;"></div>
+</body>
+</html>

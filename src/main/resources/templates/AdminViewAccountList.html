@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h2>Account List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Account ID</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>User Type</th>
+                <th>Actions</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="account : ${accounts}">
+                <td th:text="${account.accountid}"></td>
+                <td th:text="${account.name}"></td>
+                <td th:text="${account.role}"></td>
+                <td th:text="${account.userType}"></td>
+                <td>
+                    <form th:action="@{/AdminViewAccount}" method="get">
+                        <input type="hidden" name="accountid" th:value="${account.accountid}"/>
+                        <button type="submit">View Details</button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/AdminEditAccount}" method="get">
+                        <input type="hidden" name="accountid" th:value="${account.accountid}"/>
+                        <button type="submit">Edit Details</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

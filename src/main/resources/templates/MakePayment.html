@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Payment</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #272727;
+            padding-top: 80px;
+        }
+
+
+        .hero {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            height: fit-content;
+        }
+
+        .container {
+            margin-left: 20%;
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .payment-form {
+            display: flex;
+            flex-direction: column;
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-form input,
+        .payment-form textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .payment-form label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .pay-button {
+            margin-top: 20px;
+            padding: 15px 25px;
+            background: #ff7c00;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .pay-button:hover {
+            background: #ff5500;
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="container">
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+        <h1>Make Payment</h1>
+        <form class="payment-form">
+            <label for="account-id">Account ID</label>
+            <input type="text" id="account-id" name="account-id">
+
+            <label for="payment-id">Payment ID</label>
+            <input type="text" id="payment-id" name="payment-id">
+
+            <label for="year">Year</label>
+            <input type="text" id="year" name="year">
+
+            <label for="amount">Amount</label>
+            <input type="text" id="amount" name="amount">
+
+            <label for="date-issued">Date Issued</label>
+            <input type="date" id="date-issued" name="date-issued">
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="4"></textarea>
+        </form>
+        <button class="pay-button">Pay</button>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

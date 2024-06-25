@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View account</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        // Function to show the popup
+function showPopup() {
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('popup').style.display = 'block';
+}
+
+// Function to hide the popup
+function hidePopup() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('popup').style.display = 'none';
+    document.getElementById('success-popup').style.display = 'none';
+}
+
+// Function to show the success popup
+function showSuccessPopup() {
+    document.getElementById('popup').style.display = 'none';
+    document.getElementById('success-popup').style.display = 'block';
+}
+
+// Add event listeners after DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function () {
+    // Event listener for the "No" button in the popup
+    document.querySelector('.popup-no-btn').addEventListener('click', hidePopup);
+
+    // Event listener for the "Close" button in the success popup
+    document.querySelector('.popup-close-btn').addEventListener('click', hidePopup);
+
+    // Event listener for the "Back to Homepage" button
+    document.querySelector('.close-btn').addEventListener('click', function () {
+        window.location.href = 'index.html';
+    });
+
+    // Event listener for the "Delete Account" button
+    document.querySelector('.delete-btn').addEventListener('click', showPopup);
+});
+
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+header {
+    width: 100%;
+    height: 80px;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: #ffa500;
+    color: #fff;
+    text-align: center;
+    padding: 0px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99 ;
+}
+
+.Logo{
+  max-height: 100%; 
+  margin-left: 1px; 
+}
+
+/* Body */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFECE8;
+    color: #fff;
+    text-align: center;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+h1 {
+    font-weight: 500;
+    font-size: 40px;
+    word-break: break-all;
+    color: #fff;
+    text-shadow: 2px 2px 4px #c5d064;
+    position: absolute;
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+h2 {
+  font-weight: 450;
+  font-size: 40px;
+  word-break: break-all;
+  color: #fff;
+  text-shadow: 2px 2px 4px #008080;
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+}
+
+.nav ol {
+    display: flex;
+    list-style: none;
+}
+
+.nav ol li a {
+    text-decoration: none;
+    color: rgb(39, 39, 39);
+    transition: all .4s;
+    position: relative;
+    z-index: 1;
+}
+
+/*  Navbar */
+.sidebar {
+    width: 250px;
+    padding: 15vh 0;
+    height: 140vh;
+    background: #0a5275;
+    transition: all .5s ease;
+    z-index: 9;
+    text-align: left;
+}
+
+.sidebar header {
+    font-size: 30px;
+    color: white;
+    line-height: 70px;
+    text-align: left;
+    background: #008080;
+    user-select: none;
+}
+
+.sidebar ul a {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 50px;
+    font-size: 15px; /* change font */
+    color: white;
+    padding-left: 15px;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    transition: .4s;
+}
+
+.sidebar p{
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.sidebar ul a:hover{
+  background-color: #6fcaea;
+}
+
+
+/* View Account field */
+
+/* General styling for the form container */
+.form-container {
+    background-color: #f7e7ce; 
+    width: 800px; 
+    padding: 20px; 
+    border-radius: 8px; 
+    margin: auto; 
+    margin-top: 13%;
+  }
+  
+  /* Styling for the form itself */
+form {
+    display: grid; 
+    grid-template-columns: repeat(2, 2fr); 
+    grid-template-rows: auto; 
+    gap: 10px; 
+    align-items: center; 
+    margin-top: 20px; 
+  }
+  
+  /* Styling for labels */
+  .form-label {
+    text-align: left;
+    margin-bottom: 5px; 
+    color: #333; 
+    font-weight: bold; 
+  }
+  
+  /* Styling for input fields */
+  .form-input {
+    position: relative;
+    width: calc(100% - 16px); 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    background-color: white; 
+  }
+
+/* COnfirmation Delete Account Pop up */
+/* Popup Display*/
+.button-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 4%;
+  justify-content: center;
+  position: relative;
+  left: 25%; /* Adjust this value as needed */
+}
+
+.close-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+}
+
+
+/* Footer Section */
+footer {
+    background-color: #ffc65d;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.footer-links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.hero{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+  /* Header */
+  header {
+      height: auto;
+      padding: 10px 20px;
+  }
+
+  .Logo {
+      max-height: 50px; /* Adjust logo size */
+  }
+
+  h1 {
+      font-size: 24px; /* Adjust font size */
+      top: 10%;
+  }
+
+  h2 {
+      font-size: 24px; /* Adjust font size */
+      top: 20%;
+  }
+
+  .navigation {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .nav ol {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 20px;
+  }
+
+  .nav ol li {
+      margin-bottom: 10px;
+  }
+
+  /* Sidebar */
+  .sidebar {
+      width: 100%;
+      padding: 15vh 0;
+      height: auto;
+  }
+
+  .sidebar header {
+      font-size: 24px; /* Adjust font size */
+      line-height: 40px; /* Adjust line height */
+      text-align: center;
+  }
+
+  .sidebar ul a {
+      padding: 10px;
+      font-size: 14px; /* Adjust font size */
+  }
+
+  /* Form Container */
+  .form-container {
+      width: 90%;
+      margin-top: 10%;
+  }
+
+  /* Button Container */
+  .button-container {
+      flex-direction: column;
+      left: 0;
+      margin: 20px auto;
+  }
+
+  .popup-no-btn, .popup-yes-btn, .popup-close-btn {
+      margin-top: 10px;
+  }
+
+  /* Footer */
+  footer {
+      padding: 15px;
+  }
+
+  .footer-links {
+      flex-direction: column;
+  }
+
+  .footer-links a {
+      margin: 5px 0;
+  }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <img src="../Images/qubah.png" alt="Logo" class="Logo">
+        <div class ="nav">
+            <ol>
+                <li><a href="View account.html">Staff</a></li>
+            </ol>
+        </div>
+        <h1>بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>
+    </header>
+<main>
+    <div class="hero">
+    <div class="sidebar">
+        <p>Asy'Syuja-ah E-Coop</p>
+        <ul>
+            <li><a href="View account list.html"><i class=""></i>View Account List</a></li>
+            <li><a href="View account.html"><i class=""></i>View Account</a></li>
+            <li><a href="Edit Account.html"><i class=""></i>Edit Account</a></li>
+            <li><a href="#"><i class=""></i>View Announcement</a></li>
+            <li><a href="#"><i class=""></i>View Report</a></li>
+            <li><a href="#"><i class=""></i>View Payment Status</a></li>
+            <li><a href="#"><i class=""></i>Make Payment</a></li>
+            <li><a href="#"><i class=""></i>Create Announcement</a></li>
+            <li><a href="#"><i class=""></i>View Business List</a></li>
+            <li><a href="#"><i class=""></i>Register Business</a></li>
+            <li><a href="#"><i class=""></i>Edit Business</a></li>
+        </ul>
+    </div>
+    <!-- End of Side Navbar -->
+
+        <h2>View Account</h2>
+        <body>
+        <div class="form-container">
+            <form>
+              <label class="form-label" for="ic">IC Number:</label>
+              <input class="form-input" type="text" id="ic" name="ic" readonly>
+              
+              <label class="form-label" for="name">Name:</label>
+              <input class="form-input" type="text" id="name" name="name" readonly>
+              
+              <label class="form-label" for="email">Email:</label>
+              <input class="form-input" type="text" id="email" name="email" readonly>
+              
+              <label class="form-label" for="role">Role:</label>
+              <input class="form-input" type="text" id="role" name="role" readonly>
+              
+              <label class="form-label" for="phone">Phone:</label>
+              <input class="form-input" type="tel" id="phone" name="phone" readonly>
+              
+              <label class="form-label" for="address">Address:</label>
+              <input class="form-input" type="text" id="address" name="address" readonly>
+              
+              <label class="form-label" for="gender">Gender:</label>
+              <input class="form-input" type="text" id="gender" name="gender" readonly>
+              
+              <label class="form-label" for="membership">Membership status:</label>
+              <input class="form-input" type="text" id="membership" name="membership" readonly>
+            </form>
+        
+
+         <div class="button-container">
+        <button class="close-btn" onclick="window.location.href='index.html'">Back to Homepage</button>
+        </div>
+
+            </form>
+          </div>
+        </body>
+          
+</main>
+
+    
+    <footer>
+        <div class="footer-content">
+            <p>Address: Jalan Merlimau / Jasin, 77300 Merlimau, Melaka</p>
+            <p>Contact Number: 019-627 1115</p>
+            <div class="footer-links">
+                <a href="https://www.facebook.com/asysyujaah02/?locale=ms_MY" target="_blank">Facebook</a>
+                <a href="https://www.instagram.com/masjidasyujaahmerlimauutara/" target="_blank">Instagram</a>
+            </div>
+        </div>
+    </footer>
+    </body>
+    </html>
+    

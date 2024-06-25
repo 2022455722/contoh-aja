@@ -1,0 +1,8 @@
+package com.heroku.java.repository;
+
+import com.heroku.java.model.paymentModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PaymentRepository extends JpaRepository<paymentModel, Long> {
+    // You can add custom query methods here if needed
+}

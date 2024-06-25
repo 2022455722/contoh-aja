@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View account list</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+header {
+    width: 100%;
+    height: 80px;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: #ffa500;
+    color: #fff;
+    text-align: center;
+    padding: 0px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99 ;
+}
+
+.Logo{
+  max-height: 100%; 
+  margin-left: 1px; 
+}
+
+/* Body */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFECE8;
+    color: #fff;
+    text-align: center;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-weight: 500;
+    font-size: 40px;
+    word-break: break-all;
+    color: #fff;
+    text-shadow: 2px 2px 4px #c5d064;
+    position: absolute;
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+h2 {
+  font-weight: 450;
+  font-size: 40px;
+  word-break: break-all;
+  color: #fff;
+  text-shadow: 2px 2px 4px #008080;
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+}
+
+.nav ol {
+    display: flex;
+    list-style: none;
+}
+
+.nav ol li a {
+    text-decoration: none;
+    color: rgb(39, 39, 39);
+    transition: all .4s;
+    position: relative;
+    z-index: 1;
+}
+
+/*  Navbar */
+.sidebar {
+    width: 305px;
+    padding: 15vh 0;
+    height: 140vh;
+    background: #0a5275;
+    transition: all .5s ease;
+    z-index: 9;
+    text-align: left;
+}
+
+.sidebar header {
+    font-size: 30px;
+    color: white;
+    line-height: 70px;
+    text-align: left;
+    background: #008080;
+    user-select: none;
+}
+
+.sidebar ul a {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 50px;
+    font-size: 15px; /* change font */
+    color: white;
+    padding-left: 15px;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    transition: .4s;
+}
+
+.sidebar p{
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.sidebar ul a:hover{
+  background-color: #6fcaea;
+}
+
+main.tablecontainer{
+  margin: 200px 0;
+  width: 100vw;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-items: center ;
+  flex-direction: column;
+}
+
+/* View Button */
+.view-button {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 20px; /* Makes the button round */
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.view-button:hover {
+    background-color: darkgreen;
+}
+
+/* Table CSS */
+div.table {
+    width: 75vw;
+    height: 80vh;
+    background-color: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: .8rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+    position: relative; 
+    top: -80px; 
+}
+
+
+.table__header {
+    width: 100%;
+    height: 10%;
+    background-color: #fff4;
+    padding: .8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table__header .input-group {
+    width: 35%;
+    height: 100%;
+    background-color: #fff5;
+    padding: 0 .8rem;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s;
+}
+
+.table__header .input-group:hover {
+    width: 45%;
+    background-color: #fff8;
+    box-shadow: 0 .1rem .4rem #0002;
+}
+
+.table__header .input-group img {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.table__header .input-group input {
+    width: 100%;
+    padding: 0 .5rem 0 .3rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.table__body {
+    width: 95%;
+    max-height: calc(89% - 1.6rem);
+    background-color: #fffb;
+
+    margin: .8rem auto;
+    border-radius: .6rem;
+
+    overflow: auto;
+    overflow: overlay;
+}
+
+.table__body::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+.table__body::-webkit-scrollbar-thumb {
+    border-radius: .5rem;
+    background-color: #0004;
+    visibility: hidden;
+}
+
+.table__body:hover::-webkit-scrollbar-thumb { 
+    visibility: visible;
+}
+
+table {
+    width: 100%;
+}
+
+td img {
+    width: 36px;
+    height: 36px;
+    margin-right: .5rem;
+    border-radius: 50%;
+
+    vertical-align: middle;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    padding: 1rem;
+    text-align: left;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #d5d1defe;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #0000000b;
+}
+
+tbody tr {
+    --delay: .1s;
+    transition: .5s ease-in-out var(--delay), background-color 0s;
+}
+
+tbody tr.hide {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+tbody tr:hover {
+    background-color: #fff6 !important;
+}
+
+
+@media (max-width: 1000px) {
+    td:not(:first-of-type) {
+        min-width: 12.1rem;
+    }
+}
+
+
+
+/* Footer Section */
+footer {
+  background-color: #ffc65d;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  width: 100%;  
+}
+
+.footer-links {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.hero{
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+  flex-direction: row;
+}
+/* Media Queries */
+@media (max-width: 768px) {
+    /* Header */
+    header {
+        height: auto;
+        padding: 10px 20px;
+    }
+
+    .Logo {
+        max-height: 50px; /* Adjust logo size */
+    }
+
+    h1 {
+        font-size: 24px; /* Adjust font size */
+        top: 10%;
+    }
+
+    h2 {
+        font-size: 24px; /* Adjust font size */
+        top: 20%;
+    }
+
+    .navigation {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav ol {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
+
+    .nav ol li {
+        margin-bottom: 10px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        width: 100%;
+        padding: 10px;
+        height: auto;
+    }
+
+    .sidebar header {
+        font-size: 24px; /* Adjust font size */
+        line-height: 40px; /* Adjust line height */
+        text-align: center;
+    }
+
+    .sidebar ul a {
+        padding: 10px;
+        font-size: 14px; /* Adjust font size */
+    }
+
+    /* Table */
+    div.table {
+        width: 90vw;
+        height: auto;
+        top: 0;
+        margin-top: 100px; /* Adjust margin */
+    }
+
+    .table__header .input-group {
+        width: 80%;
+    }
+
+    .table__body {
+        max-height: calc(100% - 60px);
+    }
+
+    table {
+        font-size: 14px; /* Adjust font size */
+    }
+
+    /* Footer */
+    footer {
+        padding: 15px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+    }
+
+    .footer-links a {
+        margin: 5px 0;
+    }
+}
+
+    </style>
+    <script>
+        const search = document.querySelector('.input-group input'),
+    table_rows = document.querySelectorAll('tbody tr'),
+    table_headings = document.querySelectorAll('thead th');
+
+let currentSortColumn = 0;
+let currentSortAsc = true;
+
+// 1. Searching for specific data of HTML table
+search.addEventListener('input', () => {
+    searchTable();
+    sortTable(currentSortColumn, currentSortAsc);
+});
+
+function searchTable() {
+    const tbody = document.querySelector('tbody');
+    const search_data = search.value.toLowerCase();
+    const matchingRows = [];
+    const nonMatchingRows = [];
+
+    table_rows.forEach(row => {
+        let table_data = row.textContent.toLowerCase();
+        if (table_data.indexOf(search_data) < 0) {
+            row.classList.add('hide');
+            nonMatchingRows.push(row);
+        } else {
+            row.classList.remove('hide');
+            matchingRows.push(row);
+        }
+    });
+
+    tbody.innerHTML = ''; // Clear the table body
+    matchingRows.forEach(row => tbody.appendChild(row));
+    nonMatchingRows.forEach(row => tbody.appendChild(row));
+
+    updateRowColors();
+}
+
+function updateRowColors() {
+    document.querySelectorAll('tbody tr:not(.hide)').forEach((visible_row, i) => {
+        visible_row.style.backgroundColor = (i % 2 === 0) ? 'transparent' : '#0000000b';
+    });
+}
+
+
+
+// 2. View Button
+document.querySelectorAll('.view-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const row = button.closest('tr');
+        const accountName = row.children[1].textContent; // Assuming the Name is in the second column
+        alert('Viewing account: ' + accountName);
+    });
+});
+
+    </script>
+</head>
+<body>
+    <header>
+        <img src="../Images/qubah.png" alt="Logo" class="Logo">
+        <div class ="nav">
+            <ol>
+                <li><a href="View account list.html">Staff</a></li>
+            </ol>
+        </div>
+        <h1>بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>
+    </header>
+
+    <div class="hero">
+    <div class="sidebar">
+        <p>Asy'Syuja-ah E-Coop</p>
+        <ul>
+            <li><a href="View account list.html"><i class=""></i>View Account List</a></li>
+            <li><a href="View account.html"><i class=""></i>View Account</a></li>
+            <li><a href="Edit Account.html"><i class=""></i>Edit Account</a></li>
+            <li><a href="#"><i class=""></i>View Announcement</a></li>
+            <li><a href="#"><i class=""></i>View Report</a></li>
+            <li><a href="#"><i class=""></i>View Payment Status</a></li>
+            <li><a href="#"><i class=""></i>Make Payment</a></li>
+            <li><a href="#"><i class=""></i>Create Announcement</a></li>
+            <li><a href="#"><i class=""></i>View Business List</a></li>
+            <li><a href="#"><i class=""></i>Register Business</a></li>
+            <li><a href="#"><i class=""></i>Edit Business</a></li>
+        </ul>
+    </div>
+    <!-- End of Side Navbar -->
+
+    <!-- Table Section -->
+    <main class="tablecontainer">
+        <h2>View Account List</h2>
+        <div class="table" id="Account_table">
+            <section class="table__header">
+                <div class="input-group">
+                    <input type="search" placeholder="Search account name">
+                </div>
+            </section>
+            <section class="table__body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th> NRIC </th>
+                            <th> Name </th>
+                            <th> Email </th>
+                            <th> Role </th>
+                            <th> Phone </th>
+                            <th> Actions </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                       <td style="color: black;">994623468441</td>
+                       <td style="color: black;">Hafiz Bin Othman</td>
+                       <td style="color: black;">hafizOthman@gmail.com</td>
+                       <td style="color: black;">Member</td>
+                       <td style="color: black;">012-4781947</td>
+                       <td><button class="view-button">View</button></td>
+                    </tr>
+                    <tr>
+                        <td style="color: black;">994623468441</td>
+                        <td style="color: black;">Hafiz Bin Othman</td>
+                        <td style="color: black;">hafizOthman@gmail.com</td>
+                        <td style="color: black;">Member</td>
+                        <td style="color: black;">012-4781947</td>
+                        <td><button class="view-button">View</button></td>
+                     </tr>
+                     <tr>
+                        <td style="color: black;">994623468441</td>
+                        <td style="color: black;">Hafiz Bin Othman</td>
+                        <td style="color: black;">hafizOthman@gmail.com</td>
+                        <td style="color: black;">Member</td>
+                        <td style="color: black;">012-4781947</td>
+                        <td><button class="view-button">View</button></td>
+                    </tr>
+                    <tr>
+                        <td style="color: black;">994623468441</td>
+                        <td style="color: black;">Hafiz Bin Othman</td>
+                        <td style="color: black;">hafizOthman@gmail.com</td>
+                        <td style="color: black;">Member</td>
+                        <td style="color: black;">012-4781947</td>
+                        <td><button class="view-button">View</button></td>
+                     </tr>
+                     <tr>
+                        <td style="color: black;">994623468441</td>
+                        <td style="color: black;">Hafiz Bin Othman</td>
+                        <td style="color: black;">hafizOthman@gmail.com</td>
+                        <td style="color: black;">Member</td>
+                        <td style="color: black;">012-4781947</td>
+                        <td><button class="view-button">View</button></td>
+                     </tr>
+                     <tr>
+                        <td style="color: black;">994623468441</td>
+                        <td style="color: black;">Hafiz Bin Othman</td>
+                        <td style="color: black;">hafizOthman@gmail.com</td>
+                        <td style="color: black;">Member</td>
+                        <td style="color: black;">012-4781947</td>
+                        <td><button class="view-button">View</button></td>
+                     </tr>
+                     <tr>
+                        <td style="color: black;">994623468441</td>
+                        <td style="color: black;">Hafiz Bin Othman</td>
+                        <td style="color: black;">hafizOthman@gmail.com</td>
+                        <td style="color: black;">Member</td>
+                        <td style="color: black;">012-4781947</td>
+                        <td><button class="view-button">View</button></td>
+                     </tr>
+                     <tr>
+                        <td style="color: black;">994623468441</td>
+                        <td style="color: black;">Hafiz Bin Othman</td>
+                        <td style="color: black;">hafizOthman@gmail.com</td>
+                        <td style="color: black;">Member</td>
+                        <td style="color: black;">012-4781947</td>
+                        <td><button class="view-button">View</button></td>
+                     </tr>
+                     <tr>
+                        <td style="color: black;">994623468441</td>
+                        <td style="color: black;">Hafiz Bin Othman</td>
+                        <td style="color: black;">hafizOthman@gmail.com</td>
+                        <td style="color: black;">Member</td>
+                        <td style="color: black;">012-4781947</td>
+                        <td><button class="view-button">View</button></td>
+                     </tr>
+                     <tr>
+                        <td style="color: black;">994623468441</td>
+                        <td style="color: black;">Hafiz Bin Othman</td>
+                        <td style="color: black;">hafizOthman@gmail.com</td>
+                        <td style="color: black;">Member</td>
+                        <td style="color: black;">012-4781947</td>
+                        <td><button class="view-button">View</button></td>
+                     </tr>
+                     <tr>
+                        <td style="color: black;">994623468441</td>
+                        <td style="color: black;">Hafizol Bin Othman</td>
+                        <td style="color: black;">hafizol@gmail.com</td>
+                        <td style="color: black;">Member</td>
+                        <td style="color: black;">012-4781947</td>
+                        <td><button class="view-button">View</button></td>
+                     </tr>
+                     <tr>
+                        <td style="color: black;">887432697331</td>
+                        <td style="color: black;">Hafizah Bin Othman</td>
+                        <td style="color: black;">hafizahOthman@gmail.com</td>
+                        <td style="color: black;">Staff</td>
+                        <td style="color: black;">012-4786707</td>
+                        <td><button class="view-button">View</button></td>
+                     </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        </main>
+        </div>
+        <!-- End of Table Section -->
+    </div>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <p>Address: Jalan Merlimau / Jasin, 77300 Merlimau, Melaka</p>
+        <p>Contact Number: 019-627 1115</p>
+        <div class="footer-links">
+            <a href="https://www.facebook.com/asysyujaah02/?locale=ms_MY" target="_blank">Facebook</a>
+            <a href="https://www.instagram.com/masjidasyujaahmerlimauutara/" target="_blank">Instagram</a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

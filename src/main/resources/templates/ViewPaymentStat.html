@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Payment Status</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #272727;
+            padding-top: 80px;
+        }
+
+
+
+        main {
+            margin-left: 17%;
+            padding: 20px;
+            height: 87vh;
+            flex-grow: 1;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .payment-status {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .payment-status .entry {
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+         
+        .hero {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            height: fit-content;
+        }
+
+    </style>
+</head>
+<body>
+
+  <div th:replace="~{fragments/header :: header}"></div>
+  <div th:replace="~{fragments/sidebar :: sidebar}"></div> 
+    <main> 
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+        <div class="payment-status">
+            <div class="entry">
+                <span>Year: 2020</span>
+                <span>Status: Paid</span>
+            </div>
+            <div class="entry">
+                <span>Year: 2021</span>
+                <span>Status: Unpaid</span>
+            </div>
+            <div class="entry">
+                <span>Year: 2022</span>
+                <span>Status: Paid</span>
+            </div>
+        </div>
+    </main>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
